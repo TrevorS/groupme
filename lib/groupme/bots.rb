@@ -27,7 +27,7 @@ module GroupMe
     # Create a new bot.
     #
     # @return [Hashie::Mash] Hash representing the bot
-    # @see http://dev.groupme.com/docs/v3#groups_create
+    # @see http://dev.groupme.com/docs/v3#bots_create
     # @param name [String] Name for the new bot
     # @param group_id [String] Id of the group
     # @param options [Hash] bot information
@@ -40,6 +40,18 @@ module GroupMe
         :bot => options
       }
       post('/bots', data).body.response
+    end
+    
+    # Destroy bot.
+    #
+    # @return response
+    # @see http://dev.groupme.com/docs/v3#bots_destroy
+    # @param bot_id [String] Id of the bot
+    def destroy_bot(bot_id)
+      data = {
+        :bot_id => bot_id
+      }
+      post('/bots/destroy', data)
     end
 
     # Post a message for a group through the bot
